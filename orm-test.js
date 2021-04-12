@@ -1,162 +1,23 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Venta = exports.Cliente = exports.Producto_venta = exports.Producto = void 0;
 require("reflect-metadata");
-// Entidades
-const typeorm_1 = require("typeorm");
-/*@Entity()
-export class User {
-
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column()
-    firstName: string;
-    
-    @Column()
-    isActive: boolean;
-}*/
-//import {Producto} from "./Producto";
-//import {Venta} from "./Venta";
-let Producto = class Producto {
-};
-__decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
-], Producto.prototype, "id", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Producto.prototype, "nombre", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Producto.prototype, "descripcion", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Number)
-], Producto.prototype, "precio_unitario", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Producto.prototype, "categoria", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Number)
-], Producto.prototype, "porcentaje_iva", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Boolean)
-], Producto.prototype, "disponible", void 0);
-__decorate([
-    typeorm_1.OneToMany(() => Producto_venta, Producto_venta => Producto_venta.producto),
-    __metadata("design:type", Array)
-], Producto.prototype, "producto_venta", void 0);
-Producto = __decorate([
-    typeorm_1.Entity()
-], Producto);
-exports.Producto = Producto;
-let Producto_venta = class Producto_venta {
-};
-__decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
-], Producto_venta.prototype, "id", void 0);
-__decorate([
-    typeorm_1.ManyToOne(() => Producto, producto => producto.id),
-    __metadata("design:type", Producto)
-], Producto_venta.prototype, "producto", void 0);
-__decorate([
-    typeorm_1.ManyToOne(() => Venta, venta => venta.id),
-    __metadata("design:type", Array)
-], Producto_venta.prototype, "venta", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", Number)
-], Producto_venta.prototype, "cantidad", void 0);
-Producto_venta = __decorate([
-    typeorm_1.Entity()
-], Producto_venta);
-exports.Producto_venta = Producto_venta;
-let Cliente = class Cliente {
-};
-__decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
-], Cliente.prototype, "id", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Cliente.prototype, "identificacion", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Cliente.prototype, "nombre", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Cliente.prototype, "telefono", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Cliente.prototype, "fecha_de_nacimiento", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Cliente.prototype, "direccion", void 0);
-__decorate([
-    typeorm_1.OneToMany(() => Venta, venta => venta.cliente),
-    __metadata("design:type", Array)
-], Cliente.prototype, "venta", void 0);
-Cliente = __decorate([
-    typeorm_1.Entity()
-], Cliente);
-exports.Cliente = Cliente;
-let Venta = class Venta {
-};
-__decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
-], Venta.prototype, "id", void 0);
-__decorate([
-    typeorm_1.ManyToOne(() => Cliente, cliente => cliente.id),
-    __metadata("design:type", Cliente)
-], Venta.prototype, "cliente", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], Venta.prototype, "fecha_de_venta", void 0);
-__decorate([
-    typeorm_1.ManyToMany(type => Producto),
-    typeorm_1.JoinTable(),
-    __metadata("design:type", Array)
-], Venta.prototype, "productos", void 0);
-Venta = __decorate([
-    typeorm_1.Entity()
-], Venta);
-exports.Venta = Venta;
 // Conexión
-const typeorm_2 = require("typeorm");
-typeorm_2.createConnection({
+const typeorm_1 = require("typeorm");
+const Venta_1 = require("./entities/Venta");
+const Cliente_1 = require("./entities/Cliente");
+const Producto_1 = require("./entities/Producto");
+const Producto_venta_1 = require("./entities/Producto_venta");
+typeorm_1.createConnection({
     type: 'postgres',
     url: 'postgres://fnwprpro:SxXTT1W46Ol7iJddsfzpdTrCeI7043Eu@tuffi.db.elephantsql.com:5432/fnwprpro',
-    entities: [Producto, Venta, Cliente, Producto_venta],
+    entities: [Producto_1.Producto, Venta_1.Venta, Cliente_1.Cliente, Producto_venta_1.Producto_venta],
     synchronize: true
 }).then(async (conexion) => {
     // Queries
     // Insert
-    await conexion
-        .createQueryBuilder();
-    /*       .insert()
+    /*     await conexion
+           .createQueryBuilder()
+         .insert()
            .into(Cliente)
            .values([
                {identificacion: "1106011547",
@@ -281,7 +142,7 @@ typeorm_2.createConnection({
     //await conexion.createQueryBuilder().delete()
     //.from(Producto, "producto").where("precio_unitario <= 6000").execute();
     const producto = await conexion.createQueryBuilder().select("producto")
-        .from(Producto, "producto").where("id = 2").getMany();
+        .from(Producto_1.Producto, "producto").where("id = 2").getMany();
     console.log(producto);
     // users es un array de JSONs que representan Users
     //Filter 

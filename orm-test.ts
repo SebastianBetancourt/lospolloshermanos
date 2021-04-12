@@ -1,107 +1,11 @@
 import "reflect-metadata";
-// Entidades
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn, OneToMany, LessThanOrEqual, JoinTable, ManyToMany, Like, SimpleConsoleLogger} from "typeorm";
-
-/*@Entity()
-export class User {
-
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @Column()
-    firstName: string;
-	
-	@Column()
-    isActive: boolean;
-}*/
-
-
-//import {Producto} from "./Producto";
-//import {Venta} from "./Venta";
-
-
-
-
-@Entity()
-export class Producto{
-    @PrimaryGeneratedColumn()
-    id: number;
-    @Column()
-    nombre: string;
-    @Column()
-    descripcion: string;
-    @Column()
-    precio_unitario: number;
-    @Column()
-    categoria: string;
-    @Column()
-    porcentaje_iva: number;
-    @Column()
-    disponible: boolean;
-    @OneToMany(() => Producto_venta, Producto_venta => Producto_venta.producto)
-    producto_venta: Producto_venta[];
-}
-
-
-
-@Entity()
-export class Producto_venta{
-    @PrimaryGeneratedColumn()
-    id: number;
-    @ManyToOne(() => Producto, producto => producto.id)
-    producto: Producto;
-    @ManyToOne(() => Venta, venta => venta.id)
-    venta: Venta[];
-    @Column()
-    cantidad: number;
-}
-
-
-
-
-@Entity()
-export class Cliente{
-    @PrimaryGeneratedColumn()
-    id: number;
-    @Column()
-    identificacion: string;
-    @Column()
-    nombre: string;
-    @Column()
-    telefono: string;
-    @Column() 
-    fecha_de_nacimiento: string;
-    @Column()
-    direccion: string;
-    @OneToMany(() => Venta, venta => venta.cliente)
-    venta: Venta[];
-}
-
-
-
-@Entity()
-export class Venta{
-
-    @PrimaryGeneratedColumn()
-    id: number;
-
-    @ManyToOne(() => Cliente, cliente => cliente.id)
-    cliente: Cliente;
-
-    @Column() 
-    fecha_de_venta: string;
-
-    @ManyToMany(type => Producto)
-    @JoinTable()
-    productos: Producto[];
-}
-
-
-
-
 
 // Conexión
-import {createConnection, Connection} from "typeorm";
+import {createConnection} from "typeorm";
+import {Venta} from "./entities/Venta";
+import {Cliente} from "./entities/Cliente";
+import {Producto} from "./entities/Producto";
+import {Producto_venta} from "./entities/Producto_venta";
 
 createConnection({
     type: 'postgres',
@@ -112,9 +16,9 @@ createConnection({
 
     // Queries
     // Insert
-    await conexion
+ /*     await conexion
         .createQueryBuilder()
- /*       .insert()
+      .insert()
         .into(Cliente)
         .values([
             {identificacion: "1106011547",
