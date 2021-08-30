@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<table>
+
+    <thead>
+    <tr>
+        <th>NOMBRES</th>
+        <th>APELLIDOS</th>
+        <th>USUARIO</th>
+        <th>CORREO ELECTRONICO</th>
+        <th>ROL</th>
+        <th></th>
+    </tr>
+    </thead>
+    {% for usuario in object_list %}
+    <tr>
+             <td>{{ usuario.user.first_name }}</td>
+             <td>{{ usuario.user.last_name }}</td>
+             <td>{{ usuario.user.username }}</td>
+             <td>{{ usuario.user.email }}</td>
+             <td>{{ usuario.rol }}</td>
+             <td><a href="{%url 'perfil' usuario.id %}">Ver perfil</a></td>
+        </tr>
+    {% empty %}
+    <h2 style="text-align: center; font-size: 50px; margin-top: 30px;"> No hay usuarios registrados</h2>
+    <br>
+    <br>
+    {% endfor %}
+    </table>
+
+    {% if page_obj.has_previous or page_obj.has_next %}
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"> Atrás </a> - 
+                {% endif %}
+                    Pág. {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                {% if page_obj.has_next %}
+                    - <a href="?page={{ page_obj.next_page_number }}">Sgte.</a>
+                {% endif %}
+    {% endif %}
+{% endblock  %}

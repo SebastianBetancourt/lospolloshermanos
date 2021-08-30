@@ -1,0 +1,47 @@
+{% load static %}
+{% load extras %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title|title}} - Los Pollos Hermanos</title>
+</head>
+<body>
+  <header>
+    <h1>Los Pollos Hermanos</h1>
+    {% if user.is_authenticated %}
+      Sesión abierta de <strong>{{ user.username }} ({{user.usuario.rol}})</strong>
+      / /
+      <a href="{% url 'index' %}">Inicio</a> / 
+      {% if user|is_administrador %}<a href="{% url 'usuarios' %}">Usuarios</a> / {% endif %}
+      <a href="{% url 'productos' %}">Productos</a> / 
+      
+      <a href="{% url 'perfil' user.usuario.id %}">Mi Perfil</a> / 
+      <a href="{% url 'logout' %}">Cerrar sesión</a>
+    {% else %}
+      <a href="{% url 'index' %}">Inicio</a> /
+      <a href="{% url 'login' %}">Iniciar sesión</a> /
+      <a href="{% url 'signup' %}">Crear cuenta</a>
+    {% endif %}
+    <hr>
+  </header>
+  <main>
+  {% if messages %}
+
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+   {% block content %}
+    {% endblock %}
+  </main>
+  <footer>
+    <hr>
+    <small>
+      RBD
+    </small>
+  </footer>
+</body>
+</html>

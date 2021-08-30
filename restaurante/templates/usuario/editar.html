@@ -1,0 +1,10 @@
+  {% extends 'base.html' %}
+{% block content %}
+  <form method="post">
+    <h2>Editar perfil</h2>
+    {% csrf_token %}
+    {{ userForm.as_p }}
+    {{ usuarioForm.as_p }}
+    <button type="submit">Guardar</button>
+  </form>
+{% endblock %}
