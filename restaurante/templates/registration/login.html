@@ -1,0 +1,9 @@
+  {% extends 'base.html' %}
+  {% block content %}
+  <form method="post">
+    <h2>Iniciar sesión</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Iniciar sesión</button>
+    </form>
+    {% endblock %}
