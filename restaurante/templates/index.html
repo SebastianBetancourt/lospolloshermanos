@@ -2,6 +2,683 @@
 {% load static %}
 
 
-{% block content %}
-HOLA
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block content %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chick Chicken - Restaurant HTML Template</title>
+	
+	<!-- Favicon -->
+    
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+	<link rel="icon" href="{% static 'images/faviconn.ico' %}" type="image/x-icon">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<!-- gooogle fonts-->
+	<link href="{% static 'https://fonts.googleapis.com/css?family=Pacifico' %}" rel="stylesheet"> 
+	<link href="{% static 'https://fonts.googleapis.com/css?family=Lato' %}" rel="stylesheet">  
+	<!--fontawsome-->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+	<!-- Animate -->
+	<link href="{% static 'css/animate.css' %" rel="stylesheet">	
+	<!-- Slick Slider	-->
+	<link  href="{% static 'css/slick.css' %}" type="text/css" rel="stylesheet">
+	<link  href="{% static 'css/slick-theme.css' %}" type="text/css" rel="stylesheet">
+	<!--Main style-->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+   
+</head>
+
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     HEADER SECTION
+     ========================= -->  
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+            .myButton {
+        background-color:#d65f5f;
+        border: none;
+    }
+    
+    .myButton:hover{
+        background-color:#c34949;
+        border: none;
+        text-decoration: none;
+        text-shadow: none;
+    }
+    
+    </style>
+
+
+
+
+	<section class="story-area" id="story">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-6  col-sm-6">
+						<div class="subtitle">
+							<h3>Discover</h3>
+							<h2>Our Story</h2>
+						</div>
+						
+						<p class="para-big  wow slideInLeft" data-wow-duration="2s">Welcome to <span>Chick Chicken</span>, a modern restaurant with a focus on premium food tastes.</p>
+						<p class="  wow slideInLeft" data-wow-duration="2.5s">Delivery biological sour ingredients marinate oranges recommendations tea resta- urant appliances. Meals meat cafe cream foodtruck eat better. Dish peas blend. Etiquette baking cheese romantic. Locally grown wholesome first class sushi main course poultry bartender tasty scent salt spoon artisan yummy bar. Vegan butter farm peas conserve indian caramelize.</p>
+						<div class="story-redmone wow slideInLeft" data-wow-duration="3s">
+							<a href="#" class="story-btn">Read More <img src="images/arror.png" alt=""></a>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="col-md-6  col-sm-6 story-img-box story-img-1  wow bounceInUp"  data-wow-duration="2.5s">
+							<img src="{% static 'images/story-1.jpg' %}" alt="" class="img-responsive">
+							<img src="{% static 'images/story-2.jpg' %}" alt="" class="img-responsive">
+						</div>	
+						<div class="col-md-6 col-sm-6 story-img-box  wow bounceInUp"  data-wow-duration="2s">	
+							<img src="{% static 'images/story-3.jpg' %}" alt="" class="img-responsive">
+							<img src="{% static 'images/story-4.jpg' %}" alt="" class="img-responsive">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row" id="story-area-bottom">
+				<div class="col-md-12">
+					<div class="story-bottom-text">
+						<div class="col-md-4  col-sm-4  wow slideInLeft" data-wow-duration="3s">
+							<div class="story-bottom-text-box">
+								<img src="images/img1.png" alt="">
+								<h5>Delicious food</h5>
+								<p>I first made this recipe for my second cookbook but have made it numerous times since because honestly, it is one of the most intensely delicious recipes I’ve ever created and you guys.</p>
+							</div>
+						</div>
+						<div class="col-md-4  col-sm-4  wow slideInLeft" data-wow-duration="2.5s">
+							<div class="story-bottom-text-box">
+								<img src="images/img2.png" alt="">
+								<h5>Professional Service</h5>
+								<p>I first made this recipe for my second cookbook but have made it numerous times since because honestly, it is one of the most intensely delicious recipes I’ve ever created and you guys.</p>
+							</div>
+						</div>
+						<div class="col-md-4  col-sm-4  wow slideInLeft" data-wow-duration="2s">
+							<div class="story-bottom-text-box">
+								<img src="images/img3.png" alt="">
+								<h5>Excelient Various Menu</h5>
+								<p>I first made this recipe for my second cookbook but have made it numerous times since because honestly, it is one of the most intensely delicious recipes I’ve ever created and you guys.</p>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</section>
+	
+	<!-- =========================
+		BOOKING SECTION
+     ========================= -->	
+	
+	<section class="booking-area" id="booking">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="subtitle">
+						<h3>Reservation</h3>
+						<h2>Book A Table</h2>
+					</div>	
+					<p>Opening Hour <span>7:00</span> AM - <span>11:00</span> PM, everyday on week.</p>
+				</div>
+			</div>
+			<div class="row">			
+				<div class="col-md-12 booking-form-box">
+					<form>
+						<div class="form-group">
+							<div class="col-md-3 col-sm-3 booking-form  wow bounceInUp"  data-wow-duration="2.9s">
+								<input type="text" placeholder="Choose A Date" name="date" required>
+								<span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+							</div>
+
+							<div class="col-md-3 col-sm-3  booking-form  wow bounceInUp"  data-wow-duration="2.6s">
+								<input type="text" placeholder="Choose A Time" name="time" required>
+								<span><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+							</div>
+
+							<div class="col-md-3 col-sm-3  booking-form  wow bounceInUp"  data-wow-duration="2.3s">
+								<input type="text" placeholder="How Meny Person" name="persons" required>
+								<span><i class="fa fa-users" aria-hidden="true"></i></span>
+							</div>
+							
+							<div class="col-md-3 col-sm-3  booking-btn  wow bounceInUp"  data-wow-duration="2s">
+								  <button type="submit">Book A Table</button>
+							</div>
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- =========================
+		Main Menu SECTION
+     ========================= -->	
+	<section class="reciption-area" id="reciption">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="subtitle">
+						<h3>Reservation</h3>
+						<h2>Main Menu</h2>
+					</div>		 
+ 				</div>
+ 			</div>
+			<div class="row">
+				<div class="col-md-12 reciption-btn-box">
+					<div class="tab">
+						<div class="col-md-3  col-sm-3 reciption-link-btn">
+							<button class="tablinks link-btn" onclick="openCity(event, 'Food')" id="defaultOpen"><img src="images/tab-icon-1.png" alt="">Food</button>
+						</div>		
+						<div class="col-md-3 col-sm-3 reciption-link-btn">						
+							<button class="tablinks link-btn" onclick="openCity(event, 'Drink')"><img src="images/tab-icon-2.png" alt="">Drink</button>
+						</div>						  
+						<div class="col-md-3 col-sm-3 reciption-link-btn">  
+							<button class="tablinks link-btn" onclick="openCity(event, 'Chef')"><img src="images/tab-icon-3.png" alt="">Chef</button>
+						</div>						  
+						<div class="col-md-3 col-sm-3 reciption-link-btn">					  
+							<button class="tablinks link-btn" onclick="openCity(event, 'Cocktail')"><img src="images/tab-icon-4.png" alt="">Cocktail</button>
+						</div>						  
+					</div>
+				</div>
+				
+				<div class="col-md-12">
+					<div id="Food" class="tabcontent">
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4  col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8  col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8 ">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+					</div> <!--./Food-->
+
+					<div id="Drink" class="tabcontent">
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4  col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8  col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8 ">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>					
+					</div> <!--./Drink-->
+
+					<div id="Chef" class="tabcontent">
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4  col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8  col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8 ">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+					</div> <!--./Chef-->
+									
+					<div id="Cocktail" class="tabcontent">
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4  col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8  col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4  reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6 col-sm-6  reciption-box  wow bounceInUp"  data-wow-duration="2.2s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8 ">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>
+
+						<div class="col-md-6  col-sm-6 reciption-box  wow bounceInUp"  data-wow-duration="2.4s">
+							<div class="col-md-4 col-sm-4 reciption-img">
+								<img src="images/food.png" alt="" class="img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="reciption-text">
+									<h4>Chicken Dish</h4>
+									<span>$70</span>
+								</div>	
+								<p>Blackened Berries, Cherry Tomatoes, Green Pepper, Onion, Marinara, Mozzarella & Parmesan.</p>
+								<a href="#" class="btn btn-default reciption-btn">Add To Table</a>
+							</div>						
+						</div>					
+					</div> <!--./Cocktail-->
+				</div>
+			</div>
+		</div>
+	</section> 
+
+	
+	<!-- =========================
+		Main Menu SECTION
+     ========================= -->		
+	<section class="gallery-area" id="gallery">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 gallery-full-box">	
+					<ul class="list-unstyled images-gallery">
+						<li><img src="images/gallery/gallery-1.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-2.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-3.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-4.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-5.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-6.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-7.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-8.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-9.jpg" alt="" class="img-responsive"></li>
+						<li><img src="images/gallery/gallery-10.jpg" alt="" class="img-responsive"></li>
+					</ul>
+					<div class="gallery-text-box   wow bounceInUp"  data-wow-duration="2s">
+						<div class="gallery-text">
+							<h3>follow us</h3>
+							<h2>On <a href="#">Instagram</a></h2>						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> 	
+	
+	<!-- =========================
+		tesimonial section
+     ========================= -->	
+
+
+	<!-- =========================
+		Map section
+     ========================= -->	
+     {% block scripts %}
+     <section class="maps-area" id="maps">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12  col-sm-12  maps-box">
+					<div id="cc_map"> 
+						<div id="map-canvas"></div> 
+					</div> 
+				</div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="map-text-full-box  wow slideInLeft" data-wow-duration="2s">
+						<div class="col-md-12 col-sm-12 cc-map-box">
+							<div class="map-bg-1"><img src="images/map-1.jpg" alt=""></div>
+							<div class="col-md-4 col-md-offset-0 map-text-box">
+								<div class="map-text">
+									<h2>Information</h2>					
+									<p class="address-item">
+										<span class="icon"><i class="fa fa-map-marker"></i></span>
+										P777 Seventh avenue<br>
+										New York ,NY012345<br>
+									</p>
+									
+									<p class="address-item">
+										<span class="icon"><i class="glyphicon glyphicon-earphone"></i></span>
+										+0123-456-789<br>
+										+987-654-3210<br>
+									</p>
+									
+									<p class="address-item">
+										<span class="icon"><i class="fa fa-globe"></i></span>
+										chickchicken@gmail.com<br>
+										chickchicken.com<br>
+									</p>
+								</div> 
+							</div>					
+						</div>					
+					</div>					
+				</div>					
+ 			</div>			
+ 			</div>			
+		</div>
+	</section>	
+	{% endblock %}
+    {% endblock %}
+	<!-- =========================
+			SCRIPTS 
+    <script src="js/jquery-3.2.1.min.js"></script>
+	<!-- Boostrap -->	
+    <script src="js/bootstrap.min.js"></script>
+	<!--Smooth Scroll -->
+    <script src="js/smooth-scroll.js"></script>
+	<!-- Sticky Nav -->	
+    <script src="js/jquery.sticky.js"></script>
+	<!-- Wow js -->
+    <script src="js/wow.min.js"></script>
+	<!--Slick slider-->
+	<script src="js/slick.min.js"></script>
+	<!-- Main function -->	
+    <script src="js/main.js"></script>  
+	<!--Map -->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script src="js/map-helper.js"></script>  
+</body>
+</html>
