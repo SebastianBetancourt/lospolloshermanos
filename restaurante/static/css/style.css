@@ -189,7 +189,7 @@ header .nav > li > a:focus, header .nav > li > a:hover {
     text-decoration: none;
 }
 .is-sticky .cc-navbar{
-	background:#4e9507;
+	background:#0c88d5;
 	padding-top:0px;
 	z-index: 10!important;
 	padding:10px;
