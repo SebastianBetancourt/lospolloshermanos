@@ -4,12 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{title|title}} - Los Pollos Hermanos</title>
+  <title>Los Pollos Hermanos</title>
 </head>
 <body>
   <header>
     <h1>Los Pollos Hermanos</h1>
-    <img src="{% static 'rbd.jpg' %}" alt="My image">
     {% if user.is_authenticated %}
       Sesión abierta de <strong>{{ user.username }} ({{user.usuario.rol}})</strong>
       / /

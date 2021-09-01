@@ -1,0 +1,23 @@
+  {% extends 'base.html' %}
+  {% load extras %}
+
+  {% block content %}
+  
+<h2>Producto: {{object.nombre|upper}} </h2>
+{% if user|is_administrador or user|is_funcionario %}<a href={%url 'producto_editar' object.id %}>Editar</a>
+ - <a href={%url 'borrar' 'producto' object.id %} onclick="return confirm('¿Desea eliminar permanentemente este producto?');">Borrar</a> {% endif %}
+</div>
+ <br>
+<br>
+<table>
+
+<tr><td style="font-weight: bold;">NOMBRE: </td><td>{{ object.nombre }}</td></tr>
+<tr><td style="font-weight: bold;">DESCRIPCION: </td><td>{{ object.descripcion }}</td></tr>
+<tr><td style="font-weight: bold;">PRECIO INDIVIDUAL: </td><td>{{ object.precio_unitario }}</td></tr>
+<tr><td style="font-weight: bold;">IVA: </td><td>{{ object.iva }}</td></tr>
+<tr><td style="font-weight: bold;">DISPONIBLE: </td><td>{{ object.disponible }}</td></tr>
+<tr><td style="font-weight: bold;">CATEGORIAS: </td><td>{% for tag in object.categorias.all %}
+<a href="#">{{ tag }}</a> {%endfor%}</td></tr>
+<tr><td style="font-weight: bold;">DETALLES: </td><td><ul>{%for detalle in detalles %}<li>{{ detalle.detalle }}</li>{%endfor%}</ul></td></tr>
+</table>
+    {% endblock %}

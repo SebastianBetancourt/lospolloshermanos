@@ -1,0 +1,23 @@
+  {% extends 'base.html' %}
+  
+  {% block content %}
+
+   <form method="post" action="{% url 'producto_editar' pk %}"  style="display: flex;flex-direction: column;width:35%">
+    {% csrf_token %}
+    {{ productoForm }}
+    {{ productoForm.non_field_errors }}
+    {{ detallesForm.non_form_errors }}
+    <p>Categorías más comunes: 
+            {% for mt in common_tags %}
+                <a href="#">{{mt}}</a>
+            {% endfor %}
+            </p>
+    <h3>Detalles</h3>
+    {{ detallesForm.management_form }}
+    {% for detalle in detallesForm %}{{detalle}}
+    {% endfor %}  
+    <button type="submit">Guardar</button>
+
+</form>
+
+{% endblock  %}
