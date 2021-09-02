@@ -98,7 +98,7 @@ p{
 }
 h1, h2, h3, h4, h5, h6{
 	font-family: 'Aileron-bold';		
-	color:#fff;
+	color:rgb(177, 177, 177);
 }
 h2{
 	font-size:45px;
@@ -128,7 +128,7 @@ header {
 	
 }
 header::before {
-	background:#127fd3;
+	background:#0c88d5;
 	opacity:.7;
 	content: "";
     height:  60%;

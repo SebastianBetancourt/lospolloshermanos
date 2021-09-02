@@ -3,14 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{title|title}} - Los Pollos Hermanos</title>
+    <title>{{title|title}}Los Pollos Hermanos</title>
 	
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %} type="image/x-icon">
-	<link rel="icon" href="{% static 'images/faviconn.ico' %}" type="image/x-icon">
+	<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 	<!-- gooogle fonts-->
@@ -32,8 +33,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>
-<body>
+
 <!-- =========================
      HEADER SECTION
      ========================= -->
@@ -71,25 +71,24 @@
 
             <a style="margin-left: 1%;"  href="{% url 'signup' %}" class="myButton">Registrate</a>
 		</nav>
-    
-      
-          
-        {% if user.is_authenticated %}
-        Sesión abierta de <strong>{{ user.username }} ({{user.usuario.rol}})</strong>
-        / /
-        <!--<a href="{% url 'index' %}">Inicio</a> /--> 
-        {% if user|is_administrador %}<a href="{% url 'usuarios' %}">Usuarios</a> / {% endif %}
-        <a href="{% url 'productos' %}">Productos</a> / 
-        
-        <a href="{% url 'perfil' user.usuario.id %}">Mi Perfil</a> / 
-        <a href="{% url 'logout' %}">Cerrar sesión</a>
-      {% else %}
-        <!--<a href="{% url 'index' %}">Inicio</a>--> 
-        
-    
-      {% endif %}
+  
+  </head>
+  <body>
+
+     
 		
 	</header>
+  {% if user.is_authenticated %}
+  <p style="margin-left:20px">Sesión abierta de <strong>{{ user.username }} ({{user.usuario.rol}})</p></strong>
+  <!--<a href="{% url 'index' %}">Inicio</a> /--> 
+  {% if user|is_administrador %}<a style="margin-left:20px" href="{% url 'usuarios' %}" class="myButton">Usuarios</a>  {% endif %}
+  <a href="{% url 'productos' %}" style="margin-left:10px" class="myButton">Productos</a> 
+  
+  <a href="{% url 'perfil' user.usuario.id %}" style="margin-left:10px" class="myButton">Mi Perfil</a> 
+  <a href="{% url 'logout' %}" style="margin-left:10px" class="myButton">Cerrar sesión</a>
+  {% else %}
+  <!--<a href="{% url 'index' %}">Inicio</a>--> 
+  {% endif %}
 
   <main>
     {% if messages %}
@@ -108,6 +107,7 @@
 
 </body>
 
+     
 
   <!-- =========================
 		Footer section

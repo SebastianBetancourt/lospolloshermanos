@@ -1,12 +1,16 @@
   {% extends 'base.html' %}
   {% block content %}
+  {% load static %}
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+   </head>
 <h2>{{object.user.first_name|upper}} {{object.user.last_name|upper}}</h2>
-<a href={%url 'usuario_editar' object.id %}>Editar</a>
- - <a href={%url 'borrar' 'usuario' object.id %} onclick="return confirm('¿Desea eliminar permanentemente este usuario?');">Borrar</a>
+<a style="margin-left:160px" href={%url 'usuario_editar' object.id %}><img src="{% static 'images/editar.png' %}"></a>
+ - <a href={%url 'borrar' 'usuario' object.id %} onclick="return confirm('¿Desea eliminar permanentemente este usuario?');"><img src="{% static 'images/delete.png' %}"></a>
 </div>
  <br>
 <br>
-<table>
+<table >
 
 <tr><td style="font-weight: bold;">APELLIDOS: </td><td>{{ object.user.last_name }}</td></tr>
 <tr><td style="font-weight: bold;">NOMBRES: </td><td>{{ object.user.first_name }}</td></tr>

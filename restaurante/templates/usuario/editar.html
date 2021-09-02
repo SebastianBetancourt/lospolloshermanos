@@ -1,6 +1,18 @@
   {% extends 'base.html' %}
+  {% load static %}
 {% block content %}
-  <form method="post">
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+ </head>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+
+  <form lass="login" method="post">
     <h2>Editar perfil</h2>
     {% csrf_token %}
     {{ userForm.as_p }}

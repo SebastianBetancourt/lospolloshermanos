@@ -14,5 +14,10 @@ urlpatterns = [
     path('borrar/<objeto>/<pk>', views.borrar, name='borrar'), 
     path('usuarios/', views.Usuarios.as_view(), name='usuarios'), 
     path('usuario/editar/<pk>', views.editar_usuario, name='usuario_editar'), 
-    path('productos/', views.index, name='productos'), 
+    path('productos/', views.Productos.as_view(), name='productos'), 
+    path('producto/editar/<pk>', views.editar_producto, name='producto_editar'), 
+    path('producto/crear', views.crear_producto, name='producto_crear'), 
+    path('producto/<pk>', views.Producto.as_view(), name='producto'), 
+    
+   
 ]
