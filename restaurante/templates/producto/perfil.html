@@ -18,7 +18,7 @@
 <tr><td style="font-weight: bold;">DESCRIPCION: </td><td>{{ object.descripcion }}</td></tr>
 <tr><td style="font-weight: bold;">PRECIO INDIVIDUAL: </td><td>{{ object.precio_unitario }}</td></tr>
 <tr><td style="font-weight: bold;">IVA: </td><td>{{ object.iva }}</td></tr>
-<tr><td style="font-weight: bold;">DISPONIBLE: </td><td>{{ object.disponible }}</td></tr>
+<tr><td style="font-weight: bold;">DISPONIBLE: </td><td><img width="36" src="{% if producto.disponible %}{% static 'images/true.png' %}{% else %}{% static 'images/false.png' %}{%endif%}"></td></tr>
 <tr><td style="font-weight: bold;">CATEGORIAS: </td><td>{% for tag in object.categorias.all %}
 <a href="#">{{ tag }}</a> {%endfor%}</td></tr>
 <tr><td style="font-weight: bold;">DETALLES: </td><td><ul>{%for detalle in detalles %}<li>{{ detalle.detalle }}</li>{%endfor%}</ul></td></tr>

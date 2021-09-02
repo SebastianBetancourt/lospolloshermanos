@@ -35,7 +35,7 @@
              <td>{{ producto.descripcion }}</td>
              <td>{{ producto.precio_unitario }}</td>
              <td>{{ producto.iva }}</td>
-             <td>{{ producto.disponible }}</td>
+             <td><img width="36" src="{% if producto.disponible %}{% static 'images/true.png' %}{% else %}{% static 'images/false.png' %}{%endif%}"></td>
              <td>{% for tag in producto.categorias.all %}
 <a href="#">{{ tag }}</a> {%endfor%}</td>
         </tr>
