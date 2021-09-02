@@ -2,8 +2,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<table>
 
+{% load static %}
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+ </head>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+<table>
     <thead>
     <tr>
         <th>NOMBRES</th>
@@ -21,7 +32,7 @@
              <td>{{ usuario.user.username }}</td>
              <td>{{ usuario.user.email }}</td>
              <td>{{ usuario.rol }}</td>
-             <td><a href="{%url 'perfil' usuario.id %}">Ver perfil</a></td>
+             <td><a href="{%url 'perfil' usuario.id %}"><img src="{% static 'images/lupa.jpg' %}"></a></td>
         </tr>
     {% empty %}
     <h2 style="text-align: center; font-size: 50px; margin-top: 30px;"> No hay usuarios registrados</h2>

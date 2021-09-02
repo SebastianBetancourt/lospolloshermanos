@@ -1,0 +1,26 @@
+  {% extends 'base.html' %}
+  {% load static %}
+  {% load extras %}
+
+  {% block content %}
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+   </head>  
+<h2>Producto: {{object.nombre|upper}} </h2>
+{% if user|is_administrador or user|is_funcionario %}<a style="margin-left:160px" href={%url 'producto_editar' object.id %}><img src="{% static 'images/editar.png' %}"></a>
+ - <a href={%url 'borrar' 'producto' object.id %} onclick="return confirm('¿Desea eliminar permanentemente este producto?');"><img src="{% static 'images/delete.png' %}"></a> {% endif %}
+</div>
+ <br>
+<br>
+<table class="fl-table">
+
+<tr><td style="font-weight: bold;">NOMBRE: </td><td>{{ object.nombre }}</td></tr>
+<tr><td style="font-weight: bold;">DESCRIPCION: </td><td>{{ object.descripcion }}</td></tr>
+<tr><td style="font-weight: bold;">PRECIO INDIVIDUAL: </td><td>$ {{ object.precio_unitario }}</td></tr>
+<tr><td style="font-weight: bold;">IVA: </td><td>{{ object.iva }} %</td></tr>
+<tr><td style="font-weight: bold;">DISPONIBLE: </td><td><img width="36" src="{% if producto.disponible %}{% static 'images/true.png' %}{% else %}{% static 'images/false.png' %}{%endif%}"></td></tr>
+<tr><td style="font-weight: bold;">CATEGORIAS: </td><td>{% for tag in object.categorias.all %}
+<a href="#" class="mr-1 badge badge-info">{{ tag }}</a> {%endfor%}</td></tr>
+<tr><td style="font-weight: bold;">DETALLES: </td><td><ul>{%for detalle in detalles %}<li>{{ detalle.detalle }}</li>{%endfor%}</ul></td></tr>
+</table>
+    {% endblock %}

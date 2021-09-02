@@ -13,7 +13,7 @@ import restaurante.models as models
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.urls import reverse
-from django.forms import modelform_factory
+from django.forms import modelform_factory, modelformset_factory
 from django.contrib.auth.models import Group, User
 from django.contrib.auth import logout
 
@@ -42,11 +42,18 @@ class Perfil(PermissionRequiredMixin, DetailView):
     model = models.Usuario
     
     def get_permission_required(self):
-        print(int(self.kwargs['pk']))
-        print(self.request.user.usuario.id)
         if int(self.kwargs['pk']) == self.request.user.usuario.id:
             return []
         return ['restaurante.view_usuario']
+
+class Producto(DetailView):
+    template_name = 'producto/perfil.html'
+    model = models.Producto
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['detalles'] = models.Detalle.objects.filter(producto=self.kwargs['pk'])
+        return context
+    
 
 class Usuarios(PermissionRequiredMixin, ListView):
     template_name = 'usuario/lista.html'
@@ -58,14 +65,27 @@ class Usuarios(PermissionRequiredMixin, ListView):
 
     def get_permission_required(self):
         return ['restaurante.view_usuario']
+    
+
+class Productos(ListView):
+    template_name = 'producto/lista.html'
+    paginate_by = 10
+
+    def setup(self, request, *args, **kwargs):
+        self.model = models.Producto
+        super().setup(request, *args, **kwargs)
 
 @login_required
 def borrar(request, objeto, pk):
+    suicidio = False
     if objeto == 'usuario':
         model = User
         pk = models.Usuario.objects.get(id=pk).user.id
         suicidio = int(pk) == request.user.id
-        
+        redirect = reverse('index')
+    elif objeto == 'producto':
+        model = models.Producto
+        redirect = reverse('productos')
 
     instancia = model.objects.get(id=pk)
     deleted = instancia.delete()
@@ -73,7 +93,7 @@ def borrar(request, objeto, pk):
         messages.success(request, objeto+" eliminado"+(" (también se borraron "+str(deleted[0]-1)+" registros relacionados)." if deleted[0] > 1 else ""))
         if(suicidio):
             logout(request)
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(redirect)
 
 @login_required
 def editar_usuario(request, pk):
@@ -85,7 +105,7 @@ def editar_usuario(request, pk):
         POST = request.POST.copy()
         if hasattr(request.user, 'usuario') and request.user.usuario.rol != models.Usuario.Administrador:
             POST['rol'] = usuario.rol
-            print(POST['rol'])
+
         usuarioForm = form(POST, instance=usuario)
         userForm = UserUpdateForm(request.POST, instance=usuario.user)
         if usuarioForm.is_valid() and userForm.is_valid():
@@ -105,6 +125,51 @@ def editar_usuario(request, pk):
         if hasattr(request.user, 'usuario') and request.user.usuario.rol != models.Usuario.Administrador:
             usuarioForm.fields['rol'].initial = usuario.rol
             usuarioForm.fields['rol'].disabled = True
-            
+
 
     return render(request, 'usuario/editar.html', {'usuarioForm': usuarioForm, 'userForm' : userForm,'usuario' : usuario})
+
+@permission_required('proyecto.add_producto')
+def crear_producto(request):
+    productoForm = modelform_factory(models.Producto, exclude=())
+    detallesFormSet = modelformset_factory(models.Detalle, extra=2, max_num=100, exclude=('producto',), min_num=3, validate_min=True)
+    if request.method == 'POST':
+        producto = productoForm(request.POST)
+        detalles = detallesFormSet(request.POST)
+        if producto.is_valid() and detalles.is_valid():
+            p = producto.save(commit=False)
+            p.save()
+            ds = detalles.save(commit=False)
+            for d in ds:
+                d.producto = p 
+                d.save()
+            producto.save_m2m()
+            messages.success(request, 'Producto '+p.nombre+' añadido exitosamente.')
+            return HttpResponseRedirect(reverse('productos'))
+    else:
+        producto = productoForm()
+        detalles = detallesFormSet(queryset=models.Detalle.objects.none())
+    return render(request, 'producto/crear.html', {'form': producto, 'common_tags' : models.Producto.categorias.most_common()[:4],'formDetalles' : detalles})
+
+@login_required
+def editar_producto(request, pk):
+    producto = models.Producto.objects.get(id=pk)
+    productoForm = modelform_factory(models.Producto, exclude=[])
+    detalles =  models.Detalle.objects.filter(producto=producto)
+    detallesFormSet = modelformset_factory(models.Detalle, extra=3, max_num=100, exclude=('producto',), min_num=2, validate_min=True)
+    if request.method == 'POST':
+        p = productoForm(request.POST, instance=producto)
+        d = detallesFormSet(request.POST)
+        if p.is_valid() and d.is_valid():
+            p.save()
+            #detalles.delete()
+            ds = d.save(commit=False)
+            for d in ds:
+                d.producto = producto
+                d.save()
+            messages.success(request, producto.nombre+' editado exitosamente.')
+            return HttpResponseRedirect(reverse('producto', args=(pk,)))
+    else:
+        p = productoForm(instance=producto)
+        d = detallesFormSet(queryset=detalles)
+    return render(request, 'producto/editar.html', {'productoForm': p, 'detallesForm' : d, 'pk' : pk})

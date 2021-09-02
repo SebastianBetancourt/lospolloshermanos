@@ -1,0 +1,142 @@
+
+table {
+	position: relative;
+	  z-index: 1;
+	  background: #FFFFFF;
+	  width: 80%;
+	  font-size: 15px;
+	  margin: 0 auto 200px;
+	  padding: 45px;
+	  text-align: center;
+	  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	  border-collapse:collapse;
+	  color: rgb(49, 49, 49);
+	 
+  }
+  
+  navbar-brand{
+	font-size: 10px
+  }
+  
+  th {
+	background: #0c88d5;
+	color: white;
+    text-align: center;
+    height: 60px;
+  }
+  
+  td {
+	height: 60px;
+  }
+  
+  td {
+	border-bottom: 1px solid rgb(134, 134, 134);
+  }
+  
+  form {
+	  position: relative;
+	  z-index: 1;
+	  background: #FFFFFF;
+	  max-width: 600px;
+	  margin: 0 auto 100px;
+	  padding: 45px;
+	  text-align: center;
+	  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	}
+	form input {
+	  font-family: "Roboto", sans-serif;
+	  outline: 0;
+	  background: #f2f2f2;
+	  width: 100%;
+	  border: 0;
+	  margin: 0 0 15px;
+	  padding: 15px;
+	  box-sizing: border-box;
+	  font-size: 14px;
+	}
+	form button {
+	  font-family: "Roboto", sans-serif;
+	  text-transform: uppercase;
+	  outline: 0;
+	  background: #f35151;
+	  width: 100%;
+	  border: 0;
+	  padding: 15px;
+	  color: #FFFFFF;
+	  font-size: 14px;
+	  -webkit-transition: all 0.3 ease;
+	  transition: all 0.3 ease;
+	  cursor: pointer;
+	}
+  
+	form submit {
+	  font-family: "Roboto", sans-serif;
+	  text-transform: uppercase;
+	  outline: 0;
+	  background: #ff6a00;
+	  width: 100%;
+	  border: 0;
+	  padding: 15px;
+	  color: #FFFFFF;
+	  font-size: 14px;
+	  -webkit-transition: all 0.3 ease;
+	  transition: all 0.3 ease;
+	  cursor: pointer;
+	}
+  
+	form select {
+	  font-family: "Roboto", sans-serif;
+	  outline: 0;
+	  background: #f2f2f2;
+	  width: 100%;
+	  border: 0;
+	  margin: 0 0 15px;
+	  padding: 15px;
+	  box-sizing: border-box;
+	  font-size: 14px;
+	}
+	form button:hover,.form button:active,.form button:focus {
+	  background:  #881919;
+	}
+	form .message {
+	  margin: 15px 0 0;
+	  color: #b3b3b3;
+	  font-size: 12px;
+	}
+	form .message a {
+	  color: #b3aa34;
+	  text-decoration: none;
+	}
+
+
+    .myButton {
+        background-color:#d65f5f;
+        border: none;
+    }
+    
+    .myButton:hover{
+        background-color:#c34949;
+        border: none;
+        text-decoration: none;
+        text-shadow: none;
+    }
+    
+
+
+body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: rgb(255, 255, 255);
+}
+h2{
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgb(153, 153, 153);
+    padding: 30px 0;
+}
+
+/* Table Styles */
+
+
