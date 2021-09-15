@@ -22,6 +22,12 @@ class Producto(models.Model):
     iva = models.IntegerField()
     disponible = models.BooleanField()
 
+class Descuento(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    descuento = models.IntegerField()
+    valido_desde = models.DateField()
+    valido_hasta = models.DateField()
+    
 class Detalle(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     detalle =  models.TextField()
