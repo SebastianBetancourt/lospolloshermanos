@@ -96,7 +96,7 @@
   <!--<a href="{% url 'index' %}">Inicio</a> /--> 
   {% if user|is_administrador %}<a style="margin-left:20px" href="{% url 'usuarios' %}" class="myButton">Usuarios</a>  {% endif %}
   <a href="{% url 'productos' %}" style="margin-left:10px" class="myButton">Productos</a> 
-  
+  <a href="{% url 'sedes' %}" style="margin-left:10px" class="myButton">Sedes</a> 
   <a href="{% url 'perfil' user.usuario.id %}" style="margin-left:10px" class="myButton">Mi Perfil</a> 
   <a href="{% url 'logout' %}" style="margin-left:10px" class="myButton">Cerrar sesión</a>
   {% else %}

@@ -1,0 +1,23 @@
+  {% extends 'base.html' %}
+  {% load static %}
+  {% load extras %}
+
+  {% block content %}
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+   </head>  
+<h2>Sede: {{object.nombre|upper}} </h2>
+{% if user|is_administrador %}<a style="margin-left:160px" href={%url 'sede_editar' object.id %}><img src="{% static 'images/editar.png' %}"></a>
+ - <a href={%url 'borrar' 'sede' object.id %} onclick="return confirm('¿Desea eliminar permanentemente esta sede?');"><img src="{% static 'images/delete.png' %}"></a> {% endif %}
+</div>
+ <br>
+<br>
+<table class="fl-table">
+
+<tr><td style="font-weight: bold;">NOMBRE: </td><td>{{ object.nombre }}</td></tr>
+<tr><td style="font-weight: bold;">NIT: </td><td>{{ object.nit }}</td></tr>
+<tr><td style="font-weight: bold;">DIRECCION: </td><td> {{ object.direccion }}</td></tr>
+<tr><td style="font-weight: bold;">TELEFONO: </td><td>{{ object.telefono }}</td></tr>
+
+</table>
+{% endblock %}
