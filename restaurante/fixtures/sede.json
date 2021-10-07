@@ -1,0 +1,12 @@
+[
+  {
+    "model": "restaurante.sede",
+    "pk": 1,
+    "fields": {
+      "nombre": "Albuquerque",
+      "nit": "1632591510",
+      "direccion": "Reininghauser 41, 513234",
+      "telefono": "4325477"
+    }
+  }
+]
