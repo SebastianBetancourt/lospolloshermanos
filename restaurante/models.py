@@ -68,6 +68,5 @@ class Venta(models.Model):
 class Item_venta(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
-    cantidad = models.IntegerField() 
-
+    cantidad = models.IntegerField()
 
