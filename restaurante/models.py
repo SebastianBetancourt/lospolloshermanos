@@ -13,6 +13,9 @@ class Usuario(models.Model):
         (Cliente, 'Cliente')
     ]
     rol = models.CharField(max_length=20, choices=ROL_CHOICES)
+    
+    def __str__(self):
+        return '{} ({})'.format(self.user, self.rol)
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -21,6 +24,8 @@ class Producto(models.Model):
     categorias = TaggableManager()
     iva = models.IntegerField()
     disponible = models.BooleanField()
+    def __str__(self):
+        return '{}'.format(self.nombre)
 
 class Descuento(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -38,11 +43,16 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=100)
     fecha_nacimiento = models.DateField()
     direccion = models.CharField(max_length=255)
+    def __str__(self):
+        return '{}'.format(self.nombre)
 
 class Sede(models.Model):
+    nombre = models.CharField(max_length=100) 
     nit = models.CharField(max_length=255)
     direccion = models.CharField(max_length=255)
     telefono = models.CharField(max_length=100)
+    def __str__(self):
+        return '{}'.format(self.nombre)
 
 class Venta(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

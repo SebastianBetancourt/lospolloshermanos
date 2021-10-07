@@ -1,0 +1,16 @@
+  {% extends 'base.html' %}
+  {% load static %}
+  {% block content %}
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+   </head>  
+   <form class="login" method="post" action="{% url 'sede_editar' pk %}"  style="display: flex;flex-direction: column;width:35%">
+    {% csrf_token %}
+    {{ sedeForm }}
+    {{ sedeForm.non_field_errors }}
+    {{ sedeForm.non_form_errors }}
+    <button type="submit">Guardar</button>
+
+</form>
+
+{% endblock  %}

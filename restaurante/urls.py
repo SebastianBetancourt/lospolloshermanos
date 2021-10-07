@@ -18,6 +18,9 @@ urlpatterns = [
     path('producto/editar/<pk>', views.editar_producto, name='producto_editar'), 
     path('producto/crear', views.crear_producto, name='producto_crear'), 
     path('producto/<pk>', views.Producto.as_view(), name='producto'), 
-    
+    path('sedes/', views.Sedes.as_view(), name='sedes'), 
+    path('sede/editar/<pk>', views.editar_sede, name='sede_editar'), 
+    path('sede/crear', views.crear_sede, name='sede_crear'), 
+    path('sede/<pk>', views.Sede.as_view(), name='sede'), 
    
 ]

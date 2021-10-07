@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load extras %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+{% if user|is_administrador %}<a style="margin-left:50px" href="{% url 'sede_crear' %}"><img src="{% static 'images/plus.png' %}"></a> {% endif %}
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+</head>
+
+<br>
+<br>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th>NOMBRE</th>
+        <th>NIT</th>
+        <th>DIRECCION</th>
+        <th>TELEFONO</th>
+    </tr>
+    </thead>
+    {% for sede in object_list %}
+    <tr>
+             <td><a href="{%url 'sede' sede.id %}">{{ sede.nombre }}</a></td>
+             <td>{{ sede.nit }}</td>
+             <td> {{ sede.direccion }}</td>
+             <td>{{ sede.telefono }} </td>
+        </tr>
+    {% empty %}
+    <h2> No hay sedes registradas</h2>
+    <br>
+    <br>
+    {% endfor %}
+    </table>
+
+    {% if page_obj.has_previous or page_obj.has_next %}
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"> Atrás </a> - 
+                {% endif %}
+                    Pág. {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                {% if page_obj.has_next %}
+                    - <a href="?page={{ page_obj.next_page_number }}">Sgte.</a>
+                {% endif %}
+    {% endif %}
+{% endblock  %}

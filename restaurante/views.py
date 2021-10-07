@@ -86,6 +86,9 @@ def borrar(request, objeto, pk):
     elif objeto == 'producto':
         model = models.Producto
         redirect = reverse('productos')
+    elif objeto == 'sede':
+        model = models.Sede
+        redirect = reverse('sedes')
 
     instancia = model.objects.get(id=pk)
     deleted = instancia.delete()
@@ -173,3 +176,47 @@ def editar_producto(request, pk):
         p = productoForm(instance=producto)
         d = detallesFormSet(queryset=detalles)
     return render(request, 'producto/editar.html', {'productoForm': p, 'detallesForm' : d, 'pk' : pk})
+    
+class Sedes(ListView):
+    template_name = 'sede/lista.html'
+    paginate_by = 10
+
+    def setup(self, request, *args, **kwargs):
+        self.model = models.Sede
+        super().setup(request, *args, **kwargs)
+
+@login_required
+def editar_sede(request, pk):
+    sede = models.Sede.objects.get(id=pk)
+    sedeForm = modelform_factory(models.Sede, exclude=[])
+    if request.method == 'POST':
+        p = sedeForm(request.POST, instance=sede)
+        if p.is_valid():
+            p.save()
+            messages.success(request, sede.nombre+' editado exitosamente.')
+            return HttpResponseRedirect(reverse('sede', args=(pk,)))
+    else:
+        p = sedeForm(instance=sede)
+    return render(request, 'sede/editar.html', {'sedeForm': p, 'pk' : pk})
+
+@permission_required('proyecto.add_sede')
+def crear_sede(request):
+    sedeForm = modelform_factory(models.Sede, exclude=())
+    if request.method == 'POST':
+        sede = sedeForm(request.POST)
+        if sede.is_valid():
+            p = sede.save(commit=False)
+            p.save()
+            messages.success(request, 'Sede '+p.nombre+' añadido exitosamente.')
+            return HttpResponseRedirect(reverse('sedes'))
+    else:
+        sede = sedeForm()
+    return render(request, 'sede/crear.html', {'form': sede})
+
+
+class Sede(DetailView):
+    template_name = 'sede/perfil.html'
+    model = models.Sede
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
