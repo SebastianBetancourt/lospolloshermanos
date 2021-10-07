@@ -21,23 +21,29 @@
 <table>
     <thead>
     <tr>
+        <th></th>
         <th>NOMBRE</th>
         <th>DESCRIPCION</th>
         <th>PRECIO c/u</th>
         <th>IVA</th>
         <th>DISPONIBLE</th>
+        <th>UNIDADES EN SEDE</th>
         <th>CATEGORIAS</th>
+        <th></th>
     </tr>
     </thead>
     {% for producto in object_list %}
     <tr>
+    <td><img src="{{ producto.imagen.url }}" alt=""></td>
              <td><a href="{%url 'producto' producto.id %}">{{ producto.nombre }}</a></td>
              <td>{{ producto.descripcion }}</td>
              <td>$ {{ producto.precio_unitario }}</td>
              <td>{{ producto.iva }} %</td>
              <td><img width="36" src="{% if producto.disponible %}{% static 'images/true.png' %}{% else %}{% static 'images/false.png' %}{%endif%}"></td>
+             <td>{{producto.cantidad}}</td>
              <td>{% for tag in producto.categorias.all %}
-<a href="#" class="mr-1 badge badge-info">{{ tag }}</a> {%endfor%}</td>
+                <a href="#" class="mr-1 badge badge-info">{{ tag }}</a> {%endfor%}</td>
+             <td>{% if producto.disponible and producto.cantidad > 0 %}<a href="{% url 'cart_add' producto.id %}" style="margin-left:10px" class="myButton">AÑADIR AL CARRITO</a> {%endif%} </td>
         </tr>
     {% empty %}
     <h2> No hay productos registrados</h2>

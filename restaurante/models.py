@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 
+class Sede(models.Model):
+    nombre = models.CharField(max_length=100) 
+    nit = models.CharField(max_length=255)
+    direccion = models.CharField(max_length=255)
+    telefono = models.CharField(max_length=100)
+    def __str__(self):
+        return '{}'.format(self.nombre)
+
 class Usuario(models.Model): 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     Administrador = 'Administrador'
@@ -13,7 +21,7 @@ class Usuario(models.Model):
         (Cliente, 'Cliente')
     ]
     rol = models.CharField(max_length=20, choices=ROL_CHOICES)
-    
+    sede = models.ForeignKey(Sede, on_delete=models.CASCADE, default=1)
     def __str__(self):
         return '{} ({})'.format(self.user, self.rol)
 
@@ -24,6 +32,7 @@ class Producto(models.Model):
     categorias = TaggableManager()
     iva = models.IntegerField()
     disponible = models.BooleanField()
+    imagen = models.ImageField(upload_to='product_images/', default='product_images/default.png')
     def __str__(self):
         return '{}'.format(self.nombre)
 
@@ -46,13 +55,10 @@ class Cliente(models.Model):
     def __str__(self):
         return '{}'.format(self.nombre)
 
-class Sede(models.Model):
-    nombre = models.CharField(max_length=100) 
-    nit = models.CharField(max_length=255)
-    direccion = models.CharField(max_length=255)
-    telefono = models.CharField(max_length=100)
-    def __str__(self):
-        return '{}'.format(self.nombre)
+class Existencia(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    sede = models.ForeignKey(Sede, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
 
 class Venta(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

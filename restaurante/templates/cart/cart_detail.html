@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% load cart_tag %}
+
+Total de items: {{request.session.cart|length}}
+
+
+
+{% for key,value in request.session.cart.items %}
+<br> Elemento de carrito: {{value.name}} {{value.price}} {{value.quantity}} <img url='{{value.image}}'> Total {{ value.price|multiply:value.quantity }}
+<a href="{% url 'item_increment' value.product_id %}">Increment</a>
+<a href="{% url 'item_decrement' value.product_id %}">Decrement</a>
+{% endfor %}
+<a href="{% url 'cart_clear' %}">Clear Cart</a>
+{% endblock %}
