@@ -146,7 +146,7 @@ def editar_usuario(request, pk):
 
     return render(request, 'usuario/editar.html', {'usuarioForm': usuarioForm, 'userForm' : userForm,'usuario' : usuario})
 
-@permission_required('proyecto.add_producto')
+
 def crear_producto(request):
     productoForm = modelform_factory(models.Producto, exclude=())
     detallesFormSet = modelformset_factory(models.Detalle, extra=2, max_num=100, exclude=('producto',), min_num=3, validate_min=True)
@@ -259,7 +259,7 @@ def cart_add(request, id):
 def item_clear(request, id):
     cart = Cart(request)
     product = models.Producto.objects.get(id=id)
-    cart.remove(product)
+    cart.remove(adaptar_producto_para_carrito(product))
     return redirect("cart_detail")
 
 
@@ -267,24 +267,21 @@ def item_clear(request, id):
 def item_increment(request, id):
     cart = Cart(request)
     product = models.Producto.objects.get(id=id)
-    cart.add(product=product)
+    cart.add(product=adaptar_producto_para_carrito(product))
     return redirect("cart_detail")
-
 
 @login_required
 def item_decrement(request, id):
     cart = Cart(request)
     product = models.Producto.objects.get(id=id)
-    cart.decrement(product=product)
+    cart.decrement(product=adaptar_producto_para_carrito(product))
     return redirect("cart_detail")
-
 
 @login_required
 def cart_clear(request):
     cart = Cart(request)
     cart.clear()
     return redirect("cart_detail")
-
 
 @login_required
 def cart_detail(request):
