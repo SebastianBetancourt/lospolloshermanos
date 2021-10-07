@@ -4,3 +4,5 @@ django-heroku
 psycopg2
 dj_database_url
 django-taggit
+Pillow
+django-shopping-cart

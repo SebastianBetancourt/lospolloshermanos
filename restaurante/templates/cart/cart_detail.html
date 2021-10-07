@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% load cart_tag %}
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css'%}">
+</head>
+
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+Total de items: {{request.session.cart|length}}
+
+
+<br>
+<br>
+<br>
+{% for key,value in request.session.cart.items %}
+<br> 
+
+<table>
+<tr>    
+<h2 style="color: black;"> Elementos del carrito: </h2> 
+<td>{{value.name}}</td> 
+<td>{{value.price}}</td> 
+<td>{{value.quantity}}</td>  
+<td><img url='{{value.image}}'> Total {{ value.price|multiply:value.quantity }}</td> 
+<td><a href="{% url 'item_increment' value.product_id %}"><img src="{% static 'images/plusCart.png' %}"></a></td> 
+<td><a href="{% url 'item_decrement' value.product_id %}"><img src="{% static 'images/minusCart.png' %}"></a></td> 
+{% endfor %}
+</tr>
+</table>
+<a style="text-align:center;display:block;" href="{% url 'cart_clear' %}">Limpiar Carrito</a>
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+
+{% endblock %}

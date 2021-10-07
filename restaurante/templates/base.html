@@ -60,7 +60,6 @@
 						<li><a data-scroll href="#story">Sobre Nosotros</a></li>
 						<li><a data-scroll href="#reciption">Menu</a></li>
 						<li><a data-scroll href="#booking">Reservas</a></li>
-						<li><a data-scroll href="#gallery">Galeria</a></li>
 						<li><a data-scroll href="#maps">Contactanos</a></li>
 					</ul>
                     
@@ -92,11 +91,12 @@
 		
 	</header>
   {% if user.is_authenticated %}
-  <p style="margin-left:20px">Sesión abierta de <strong>{{ user.username }} ({{user.usuario.rol}})</p></strong>
+  <p style="margin-left:20px">Sesión abierta de <strong>{{ user.username }} (Rol: {{user.usuario.rol}}, Sede: {{user.usuario.sede}}) </p></strong>
   <!--<a href="{% url 'index' %}">Inicio</a> /--> 
   {% if user|is_administrador %}<a style="margin-left:20px" href="{% url 'usuarios' %}" class="myButton">Usuarios</a>  {% endif %}
   <a href="{% url 'productos' %}" style="margin-left:10px" class="myButton">Productos</a> 
   <a href="{% url 'sedes' %}" style="margin-left:10px" class="myButton">Sedes</a> 
+  <a href="{% url 'cart_detail' %}" style="margin-left:10px" class="myButton">Carrito</a> 
   <a href="{% url 'perfil' user.usuario.id %}" style="margin-left:10px" class="myButton">Mi Perfil</a> 
   <a href="{% url 'logout' %}" style="margin-left:10px" class="myButton">Cerrar sesión</a>
   {% else %}

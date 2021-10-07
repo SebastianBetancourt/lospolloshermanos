@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
+from django.urls.conf import include
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -16,17 +17,21 @@ from django.urls import reverse
 from django.forms import modelform_factory, modelformset_factory
 from django.contrib.auth.models import Group, User
 from django.contrib.auth import logout
-
-
+from cart.cart import Cart
+from django.db.models.expressions import OuterRef, Subquery
+from django.db.models import IntegerField
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render({}, request))
 
 def signup(request):
+    sedeForm = modelform_factory(models.Usuario, fields=['sede'])
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        sede = sedeForm(request.POST)
+        if form.is_valid() and sede.is_valid():
+            user = form.save()
+
             user = authenticate(
                 username=form.cleaned_data.get('username'),
                 password=form.cleaned_data.get('password1')
@@ -35,7 +40,8 @@ def signup(request):
             return redirect('index')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        sede = sedeForm()
+    return render(request, 'registration/signup.html', {'form': form, 'sede' : sede})
 
 class Perfil(PermissionRequiredMixin, DetailView):
     template_name = 'usuario/perfil.html'
@@ -52,7 +58,9 @@ class Producto(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['detalles'] = models.Detalle.objects.filter(producto=self.kwargs['pk'])
+        context['existencia'], _ = models.Existencia.objects.get_or_create(producto=models.Producto.objects.get(id=self.kwargs['pk']), sede = self.request.user.usuario.sede,  defaults = {'cantidad': 0})
         return context
+
     
 
 class Usuarios(PermissionRequiredMixin, ListView):
@@ -74,6 +82,13 @@ class Productos(ListView):
     def setup(self, request, *args, **kwargs):
         self.model = models.Producto
         super().setup(request, *args, **kwargs)
+
+    def get_queryset(self):
+        print('0')
+        cantidadEnSede = models.Existencia.objects.filter(producto=OuterRef('pk'), sede = self.request.user.usuario.sede).values('cantidad')
+        productos = models.Producto.objects.annotate(cantidad=Subquery(cantidadEnSede, output_field=IntegerField()))
+        return productos
+    
 
 @login_required
 def borrar(request, objeto, pk):
@@ -129,7 +144,6 @@ def editar_usuario(request, pk):
             usuarioForm.fields['rol'].initial = usuario.rol
             usuarioForm.fields['rol'].disabled = True
 
-
     return render(request, 'usuario/editar.html', {'usuarioForm': usuarioForm, 'userForm' : userForm,'usuario' : usuario})
 
 @permission_required('proyecto.add_producto')
@@ -157,15 +171,19 @@ def crear_producto(request):
 @login_required
 def editar_producto(request, pk):
     producto = models.Producto.objects.get(id=pk)
+    existenciaEnSede, _ = models.Existencia.objects.get_or_create(producto = producto, sede = request.user.usuario.sede,  defaults = {'cantidad': 0})
+    existenciaForm = modelform_factory(models.Existencia, fields=['cantidad'])
     productoForm = modelform_factory(models.Producto, exclude=[])
     detalles =  models.Detalle.objects.filter(producto=producto)
     detallesFormSet = modelformset_factory(models.Detalle, extra=3, max_num=100, exclude=('producto',), min_num=2, validate_min=True)
     if request.method == 'POST':
         p = productoForm(request.POST, instance=producto)
         d = detallesFormSet(request.POST)
-        if p.is_valid() and d.is_valid():
+        c = existenciaForm(request.POST, instance = existenciaEnSede)
+        if p.is_valid() and d.is_valid() and c.is_valid():
             p.save()
             #detalles.delete()
+            c.save()
             ds = d.save(commit=False)
             for d in ds:
                 d.producto = producto
@@ -175,7 +193,8 @@ def editar_producto(request, pk):
     else:
         p = productoForm(instance=producto)
         d = detallesFormSet(queryset=detalles)
-    return render(request, 'producto/editar.html', {'productoForm': p, 'detallesForm' : d, 'pk' : pk})
+        c = existenciaForm(instance=existenciaEnSede)
+    return render(request, 'producto/editar.html', {'productoForm': p, 'detallesForm' : d, 'existenciaForm' : c, 'pk' : pk})
     
 class Sedes(ListView):
     template_name = 'sede/lista.html'
@@ -220,3 +239,53 @@ class Sede(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+def adaptar_producto_para_carrito(producto):
+    producto.name = producto.nombre
+    producto.price = producto.precio_unitario
+    producto.image = producto.imagen
+    return producto
+
+@login_required
+def cart_add(request, id):
+    cart = Cart(request)
+    product = models.Producto.objects.get(id=id)
+    cart.add(product=adaptar_producto_para_carrito(product))
+    return redirect("productos")
+
+
+@login_required
+def item_clear(request, id):
+    cart = Cart(request)
+    product = models.Producto.objects.get(id=id)
+    cart.remove(product)
+    return redirect("cart_detail")
+
+
+@login_required
+def item_increment(request, id):
+    cart = Cart(request)
+    product = models.Producto.objects.get(id=id)
+    cart.add(product=product)
+    return redirect("cart_detail")
+
+
+@login_required
+def item_decrement(request, id):
+    cart = Cart(request)
+    product = models.Producto.objects.get(id=id)
+    cart.decrement(product=product)
+    return redirect("cart_detail")
+
+
+@login_required
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect("cart_detail")
+
+
+@login_required
+def cart_detail(request):
+    return render(request, 'cart/cart_detail.html')
